@@ -14,9 +14,16 @@ pygame.display.set_caption("First game")
 clock = pygame.time.Clock()
 
 # sprite image paths and fonts
-TURRET_IMG = pygame.image.load(os.path.join("/Assets/Turret.png")).convert()
-BULLET_IMG = pygame.image.load(os.path.join("/Assets/Bullet.png")).convert()
-TARGET_IMG = pygame.image.load(os.path.join("/Assets/Target.png")).convert()
+current_dir = os.getcwd()
+TURRET_IMG = pygame.image.load(
+    os.path.join(current_dir, "FirstGame/Assets", "Turret.png")
+).convert()
+BULLET_IMG = pygame.image.load(
+    os.path.join(current_dir, "FirstGame/Assets", "Bullet.png")
+).convert()
+TARGET_IMG = pygame.image.load(
+    os.path.join(current_dir, "FirstGame/Assets", "Target.png")
+).convert()
 font = pygame.font.Font("freesansbold.ttf", 32)
 
 # functions
