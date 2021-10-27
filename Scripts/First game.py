@@ -39,21 +39,22 @@ def screen_timer(time):
 
 
 def mouse_vector():
-    x, y = pygame.mouse.get_pos()  # get mouse position
+    # get mouse position and mouse position vector (origin at center).
+    x, y = pygame.mouse.get_pos()
     mpos = [
         x - (WIN_WIDTH / 2),
         y - (WIN_HEIGHT / 2),
-    ]  # mouse position vector (origin at center)
-    ipos = [WIN_WIDTH / 2, 0]  # initial direction of bullet sprite as a vector
-    unit_vector_1 = mpos / np.linalg.norm(
-        mpos
-    )  # block of code to find angle between mpos and ipos vectors
+    ]
+    # initialize direction of bullet sprite as a vector.
+    ipos = [WIN_WIDTH / 2, 0]
+    unit_vector_1 = mpos / np.linalg.norm(mpos)
+    # find angle between mpos and ipos vectors, use outer angle when vector angles become >180.
     unit_vector_2 = ipos / np.linalg.norm(ipos)
     dot_product = np.dot(unit_vector_1, unit_vector_2)
     theta = np.arccos(dot_product)
-    degrees = np.degrees(theta)  # convert angle to degrees
+    degrees = np.degrees(theta)
     if y > WIN_HEIGHT / 2:
-        degrees = 360 - degrees  # use outer angle when vector angles become >180
+        degrees = 360 - degrees
     return degrees
 
 
@@ -61,12 +62,12 @@ def mouse_vector():
 class Turret(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale2x(TURRET_IMG)  # scale image
+        self.image = pygame.transform.scale2x(TURRET_IMG)
         self.original = self.image
-        self.image.set_colorkey((0, 0, 0))  # removes black background from .convert()
-        self.rect = self.image.get_rect()  # fetches image rectangle
-        self.rect.center = (WIN_WIDTH / 2, WIN_HEIGHT / 2)  # centre image on screen
-        self.degrees = 0  # initilize direction
+        self.image.set_colorkey((0, 0, 0))
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIN_WIDTH / 2, WIN_HEIGHT / 2)
+        self.degrees = 0
 
     def update(self):
         center = self.rect.center  # set centre of turret rect
