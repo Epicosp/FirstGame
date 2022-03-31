@@ -1,8 +1,9 @@
-# FirstGame
+# Click and Shoot turret game
 
-first game as part of my journey into learning python.
+A simple game where the user clicks to shoot a projectile at targets.
 
-## game type
+![game](Assets\screenshot.PNG)
 
-The game is a small click and shoot, projectiles will follow the
-mouse position and will collide with targets to increment score.
+
+The projectile is designed to follow the mouse position and change velocity relative to the mouse's distance from the turret.
+Collision with targets increments score, and time limit is set to end the game at 60 seconds.
